@@ -1,0 +1,177 @@
+[
+  {
+    "id": 1,
+    "manufacturer": "Acura",
+    "origin": "Japan"
+  },
+  {
+    "id": 2,
+    "manufacturer": "Alfa Romeo",
+    "origin": "Italy"
+  },
+  {
+    "id": 3,
+    "manufacturer": "Audi",
+    "origin": "Germany"
+  },
+  {
+    "id": 4,
+    "manufacturer": "BMW",
+    "origin": "Germany"
+  },
+  {
+    "id": 5,
+    "manufacturer": "Buick",
+    "origin": "United States"
+  },
+  {
+    "id": 6,
+    "manufacturer": "Cadillac",
+    "origin": "United States"
+  },
+  {
+    "id": 7,
+    "manufacturer": "Chevrolet",
+    "origin": "United States"
+  },
+  {
+    "id": 8,
+    "manufacturer": "Chrysler",
+    "origin": "United States"
+  },
+  {
+    "id": 9,
+    "manufacturer": "Dodge",
+    "origin": "United States"
+  },
+  {
+    "id": 10,
+    "manufacturer": "Ford",
+    "origin": "United States"
+  },
+  {
+    "id": 11,
+    "manufacturer": "Genesis",
+    "origin": "Korea"
+  },
+  {
+    "id": 12,
+    "manufacturer": "GMC",
+    "origin": "United States"
+  },
+  {
+    "id": 13,
+    "manufacturer": "Honda",
+    "origin": "Japan"
+  },
+  {
+    "id": 14,
+    "manufacturer": "Hyundai",
+    "origin": "Korea"
+  },
+  {
+    "id": 15,
+    "manufacturer": "Infiniti",
+    "origin": "Japan"
+  },
+  {
+    "id": 16,
+    "manufacturer": "Jaguar",
+    "origin": "United Kingdom"
+  },
+  {
+    "id": 17,
+    "manufacturer": "Jeep",
+    "origin": "United States"
+  },
+  {
+    "id": 18,
+    "manufacturer": "Kia",
+    "origin": "Korea"
+  },
+  {
+    "id": 19,
+    "manufacturer": "Land Rover",
+    "origin": "United Kingdom"
+  },
+  {
+    "id": 20,
+    "manufacturer": "Lexus",
+    "origin": "Japan"
+  },
+  {
+    "id": 21,
+    "manufacturer": "Lincoln",
+    "origin": "United States"
+  },
+  {
+    "id": 22,
+    "manufacturer": "Maserati",
+    "origin": "Italy"
+  },
+  {
+    "id": 23,
+    "manufacturer": "Mazda",
+    "origin": "Japan"
+  },
+  {
+    "id": 24,
+    "manufacturer": "Mercedes Benz",
+    "origin": "Germany"
+  },
+  {
+    "id": 25,
+    "manufacturer": "MINI",
+    "origin": "United Kingdom"
+  },
+  {
+    "id": 26,
+    "manufacturer": "Mitsubishi",
+    "origin": "Japan"
+  },
+  {
+    "id": 27,
+    "manufacturer": "Nissan",
+    "origin": "Japan"
+  },
+  {
+    "id": 28,
+    "manufacturer": "Pontiac",
+    "origin": "United States"
+  },
+  {
+    "id": 29,
+    "manufacturer": "Porsche",
+    "origin": "Germany"
+  },
+  {
+    "id": 30,
+    "manufacturer": "RAM",
+    "origin": "United States"
+  },
+  {
+    "id": 31,
+    "manufacturer": "Subaru",
+    "origin": "Japan"
+  },
+  {
+    "id": 32,
+    "manufacturer": "Tesla",
+    "origin": "United States"
+  },
+  {
+    "id": 33,
+    "manufacturer": "Toyota",
+    "origin": "Japan"
+  },
+  {
+    "id": 34,
+    "manufacturer": "Volkwagen",
+    "origin": "Germany"
+  },
+  {
+    "id": 35,
+    "manufacturer": "Volvo",
+    "origin": "Sweden"
+  }
+]

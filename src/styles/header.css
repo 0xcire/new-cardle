@@ -1,0 +1,24 @@
+.header {
+  text-align: center;
+  width: 100%;
+}
+
+#app h1 {
+  letter-spacing: 0px;
+}
+
+#guess-input {
+  width: 50%;
+  margin-top: 20px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 10px;
+  font-size: 16px;
+  color: var(--secondary-color);
+  background-color: var(--base-color);
+  transition: all 0.5s ease;
+}
+#guess-input:focus {
+  width: 60%;
+}
