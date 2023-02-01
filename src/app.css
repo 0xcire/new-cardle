@@ -1,5 +1,6 @@
 @import './styles/header.css';
 @import './styles/guesses.css';
+@import './styles/loader.css';
 
 :root {
   --base-color: #2f394d;
@@ -20,14 +21,8 @@
 }
 
 /* * {
-  border: 1px solid red;
+  outline: 1px solid red;
 } */
-
-.classic-flex {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
 
 body {
   height: 100vh;
@@ -38,6 +33,7 @@ body {
 }
 
 #app {
+  position: relative;
   height: 100%;
   width: 100%;
 
