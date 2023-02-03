@@ -1,6 +1,7 @@
 .header {
   text-align: center;
   width: 100%;
+  position: relative;
 }
 
 #app h1 {
@@ -17,8 +18,32 @@
   font-size: 16px;
   color: var(--secondary-color);
   background-color: var(--base-color);
-  transition: all 0.5s ease;
+  transition: all 0.4s ease;
 }
 #guess-input:focus {
   width: 60%;
+}
+.suggestions {
+  position: absolute;
+  width: 100%;
+  max-height: 75vh;
+  overflow: scroll;
+  left: 0%;
+  border-radius: 5px;
+  background-color: rgba(51, 0, 54, 0.95);
+}
+
+.suggestion {
+  width: 60%;
+  margin: 5px auto;
+  border-radius: 5px;
+  padding: 10px 0;
+  color: var(--secondary-color);
+  background-color: var(--base-color);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.suggestion:hover {
+  width: 50%;
 }

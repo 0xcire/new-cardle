@@ -42,3 +42,11 @@ h3 {
     width: 27%;
   }
 }
+
+.no-mas {
+  margin-left: auto;
+}
+
+.correct {
+  background-color: #468c5a;
+}

@@ -1,7 +1,7 @@
 export default class Loader {
-  constructor(container, paths) {
-    this.container = container;
-    this.paths = paths;
+  constructor() {
+    this.container = document.querySelector('.loader');
+    this.paths = document.querySelectorAll('.car-svg path');
     this.maxLength = 0;
     this.keyframe = [];
     this.timing = {
@@ -13,13 +13,13 @@ export default class Loader {
     this.animations = [];
   }
 
-  getMaxPathLength() {
+  #getMaxPathLength() {
     const lengths = Array.from(this.paths).map((path) => path.getTotalLength());
     this.maxLength = Math.floor(Math.max(...lengths));
     return this;
   }
 
-  setStrokeArrayAndOffset() {
+  #setStrokeArrayAndOffset() {
     this.paths.forEach((path) => {
       const svgPath = path;
       svgPath.style.stroke = 'var(--secondary-color)';
@@ -31,7 +31,7 @@ export default class Loader {
     return this;
   }
 
-  createKeyFrame() {
+  #createKeyFrame() {
     this.keyframe = [
       // from
       {
@@ -45,37 +45,37 @@ export default class Loader {
     return this;
   }
 
-  animatePaths() {
+  #animatePaths() {
     this.animations = Array.from(this.paths).map((path) => {
       return path.animate(this.keyframe, this.timing);
     });
-    this.pause();
+    this.#pause();
     return this;
   }
 
-  pause() {
+  #pause() {
     this.animations.forEach((animation) => animation.pause());
   }
 
-  play() {
+  #play() {
     this.animations.forEach((animation) => animation.play());
   }
 
   render() {
-    this.play();
+    this.#play();
     this.container.style.display = 'grid';
   }
 
   hide() {
     this.container.style.display = 'none';
-    this.pause();
+    this.#pause();
   }
 
   init() {
-    this.getMaxPathLength()
-      .setStrokeArrayAndOffset()
-      .createKeyFrame()
-      .animatePaths()
+    this.#getMaxPathLength()
+      .#setStrokeArrayAndOffset()
+      .#createKeyFrame()
+      .#animatePaths()
       .render();
   }
 }
