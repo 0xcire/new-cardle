@@ -1,4 +1,4 @@
-.guesses {
+.guesses-wrapper {
   height: 100%;
   width: 100%;
   padding: 20px 0;
@@ -15,16 +15,15 @@ h3 {
   margin: 10px 0;
   padding: 20px;
   background-color: var(--accent-color);
+  /* color: var(--tertiary-color); */
   border-radius: 5px;
-  /* transform: translate(-100%, 0);
-    opacity: 0; */
-  transition: all 0.5s ease-in;
+  animation: reveal 0.3s;
 }
 
-/* .reveal-guess {
-    opacity: 1;
-    transform: translate(0, 0);
-  } */
+.reveal-guess {
+  opacity: 1;
+  transform: translate(0, 0);
+}
 
 .guess,
 .indicators {
@@ -49,4 +48,15 @@ h3 {
 
 .correct {
   background-color: #468c5a;
+}
+
+@keyframes reveal {
+  from {
+    transform: translate(-100%, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
 }

@@ -1,30 +1,42 @@
 import Manufacturers from './Manufacturer';
+import { normalizeString } from '../utils/utils';
 
 export default class Guess extends Manufacturers {
   constructor() {
     super();
-    this.guess = '';
+    this.last = '';
+    this.history = [];
     this.count = 0;
   }
 
   getMatchingManufacturers(value) {
-    const matches = this.data.filter((manufacturer, i) =>
-      this.data[i].manufacturer.toLowerCase().includes(value.toLowerCase())
+    const matches = this.list.filter((manufacturer, i) =>
+      this.list[i].manufacturer.toLowerCase().includes(value.toLowerCase())
     );
     return matches;
   }
 
-  formatAnswer() {
-    return this.answer.manufacturer.replace(/\s/g, '').toLowerCase();
+  inList() {
+    return this.list.find(
+      (listItem) =>
+        normalizeString(listItem.manufacturer) === normalizeString(this.last)
+    );
   }
 
-  formatGuess() {
-    return this.guess.replace(/\s/g, '').toLowerCase();
+  addGuessToHistory(guess) {
+    this.history.unshift(guess);
   }
 
-  matchesAnswer(guess) {
-    this.guess = guess;
-    if (this.formatGuess() === this.formatAnswer()) {
+  previouslySubmitted(input) {
+    return this.history.some(
+      (guess) => normalizeString(guess) === normalizeString(input)
+    );
+  }
+
+  matchesAnswer() {
+    if (
+      normalizeString(this.last) === normalizeString(this.answer.manufacturer)
+    ) {
       return true;
     }
     return false;

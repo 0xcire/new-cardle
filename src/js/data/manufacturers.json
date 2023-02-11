@@ -2,176 +2,176 @@
   {
     "id": 1,
     "manufacturer": "Acura",
-    "origin": "Japan"
+    "hq": "Tokyo, Japan"
   },
   {
     "id": 2,
     "manufacturer": "Alfa Romeo",
-    "origin": "Italy"
+    "hq": "Turin, Italy"
   },
   {
     "id": 3,
     "manufacturer": "Audi",
-    "origin": "Germany"
+    "hq": "Ingolstadt, Germany"
   },
   {
     "id": 4,
     "manufacturer": "BMW",
-    "origin": "Germany"
+    "hq": "Munich, Germany"
   },
   {
     "id": 5,
     "manufacturer": "Buick",
-    "origin": "United States"
+    "hq": "Detroit, Michigan"
   },
   {
     "id": 6,
     "manufacturer": "Cadillac",
-    "origin": "United States"
+    "hq": "Warren, Michigan"
   },
   {
     "id": 7,
     "manufacturer": "Chevrolet",
-    "origin": "United States"
+    "hq": "Detroit, Michigan"
   },
   {
     "id": 8,
     "manufacturer": "Chrysler",
-    "origin": "United States"
+    "hq": "Auburn Hills, Michigan"
   },
   {
     "id": 9,
     "manufacturer": "Dodge",
-    "origin": "United States"
+    "hq": "Auburn Hills, Michigan"
   },
   {
     "id": 10,
     "manufacturer": "Ford",
-    "origin": "United States"
+    "hq": "Dearborn, Michigan"
   },
   {
     "id": 11,
     "manufacturer": "Genesis",
-    "origin": "Korea"
+    "hq": "Fountain Valley, California"
   },
   {
     "id": 12,
     "manufacturer": "GMC",
-    "origin": "United States"
+    "hq": "Detroit, Michigan"
   },
   {
     "id": 13,
     "manufacturer": "Honda",
-    "origin": "Japan"
+    "hq": "Tokyo, Japan"
   },
   {
     "id": 14,
     "manufacturer": "Hyundai",
-    "origin": "Korea"
+    "hq": "Seoul, South Korea"
   },
   {
     "id": 15,
     "manufacturer": "Infiniti",
-    "origin": "Japan"
+    "hq": "Yokohama, Kanagawa, Japan"
   },
   {
     "id": 16,
     "manufacturer": "Jaguar",
-    "origin": "United Kingdom"
+    "hq": "Coventry, United Kingdom"
   },
   {
     "id": 17,
     "manufacturer": "Jeep",
-    "origin": "United States"
+    "hq": "Toledo, Ohio"
   },
   {
     "id": 18,
     "manufacturer": "Kia",
-    "origin": "Korea"
+    "hq": "Seoul, South Korea"
   },
   {
     "id": 19,
     "manufacturer": "Land Rover",
-    "origin": "United Kingdom"
+    "hq": "Coventry, United Kingdom"
   },
   {
     "id": 20,
     "manufacturer": "Lexus",
-    "origin": "Japan"
+    "hq": "Nagoya, Japan"
   },
   {
     "id": 21,
     "manufacturer": "Lincoln",
-    "origin": "United States"
+    "hq": "Radnor, Pennsylvania"
   },
   {
     "id": 22,
     "manufacturer": "Maserati",
-    "origin": "Italy"
+    "hq": "Modena, Italy"
   },
   {
     "id": 23,
     "manufacturer": "Mazda",
-    "origin": "Japan"
+    "hq": "Fuchu, Hiroshima, Japan"
   },
   {
     "id": 24,
     "manufacturer": "Mercedes Benz",
-    "origin": "Germany"
+    "hq": "Stuttgart, Germany"
   },
   {
     "id": 25,
     "manufacturer": "MINI",
-    "origin": "United Kingdom"
+    "hq": "Oxford, England"
   },
   {
     "id": 26,
     "manufacturer": "Mitsubishi",
-    "origin": "Japan"
+    "hq": "Tokyo, Japan"
   },
   {
     "id": 27,
     "manufacturer": "Nissan",
-    "origin": "Japan"
+    "hq": "Yokohama, Kanagawa, Japan"
   },
   {
     "id": 28,
     "manufacturer": "Pontiac",
-    "origin": "United States"
+    "hq": "Detroit, Michigan"
   },
   {
     "id": 29,
     "manufacturer": "Porsche",
-    "origin": "Germany"
+    "hq": "Stuttgart, Germany"
   },
   {
     "id": 30,
     "manufacturer": "RAM",
-    "origin": "United States"
+    "hq": "Auburn Hills, Michigan"
   },
   {
     "id": 31,
     "manufacturer": "Subaru",
-    "origin": "Japan"
+    "hq": "Tokyo, Japan"
   },
   {
     "id": 32,
     "manufacturer": "Tesla",
-    "origin": "United States"
+    "hq": "Austin, TX"
   },
   {
     "id": 33,
     "manufacturer": "Toyota",
-    "origin": "Japan"
+    "hq": "Toyota, Aichi, Japan"
   },
   {
     "id": 34,
     "manufacturer": "Volkwagen",
-    "origin": "Germany"
+    "hq": "Wolfsburg, Germany"
   },
   {
     "id": 35,
     "manufacturer": "Volvo",
-    "origin": "Sweden"
+    "hq": "Gothenburg, Sweden"
   }
 ]

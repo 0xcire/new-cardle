@@ -24,6 +24,7 @@
   width: 60%;
 }
 .suggestions {
+  z-index: 10000;
   position: absolute;
   width: 100%;
   max-height: 75vh;
@@ -42,6 +43,11 @@
   background-color: var(--base-color);
   transition: all 0.2s ease;
   cursor: pointer;
+}
+
+.suggestion-error {
+  background-color: var(--accent-color);
+  color: var(--secondary-color);
 }
 
 .suggestion:hover {

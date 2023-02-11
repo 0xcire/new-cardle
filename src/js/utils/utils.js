@@ -1,3 +1,5 @@
+// i understand this is more redundant than useful for a project of this scale. but interesting
+// also currently not even useful cause 'requests' im debouncing are from json file
 export const debounce = (callback, delay) => {
   let timeout;
 
@@ -9,4 +11,5 @@ export const debounce = (callback, delay) => {
   };
 };
 
-export const useless = () => {};
+export const normalizeString = (string) =>
+  string.replace(/\s/g, '').toLowerCase();

@@ -1,16 +1,17 @@
 import manufacturers from '../data/manufacturers.json';
 
-// ideal: guess gets stored to local storage
-// is deleted everyday at midnight
+// at end
+// add feature to set random 'answer' to local storage, resets every midnight
+// cant be same answer twice in a row 'since relatively small data set'
 
 export default class Manufacturers {
   constructor() {
-    this.data = manufacturers;
-    this.answer = this.data[this.randomIndex()];
+    this.list = manufacturers;
+    this.answer = this.list[this.randomIndex()];
   }
 
   randomIndex() {
-    const index = Math.floor(Math.random() * this.data.length);
+    const index = Math.floor(Math.random() * this.list.length);
     return index;
   }
 }
