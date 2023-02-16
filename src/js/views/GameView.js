@@ -5,6 +5,8 @@ export default class gameView {
     this.input = document.querySelector('#guess-input');
     this.suggestionContainer = document.querySelector('.suggestions');
     this.guessContainer = document.querySelector('.guesses');
+    this.guessHeader = document.querySelector('.guesses-wrapper div');
+    this.restartBtn = document.querySelector('.fa-rotate');
   }
 
   resetInput() {
@@ -13,6 +15,10 @@ export default class gameView {
 
   disableInput() {
     this.input.disabled = true;
+  }
+
+  enableInput() {
+    this.input.disabled = false;
   }
 
   resetSuggestionContainer() {
@@ -103,6 +109,27 @@ export default class gameView {
     this.guessContainer.insertAdjacentElement('afterbegin', container);
   }
 
+  renderRestartBtn() {
+    this.restartBtn.style.display = 'block';
+  }
+
+  clearGuesses() {
+    this.guessContainer.innerHTML = '';
+  }
+
+  reset() {
+    this.clearGuesses();
+    this.enableInput();
+    this.restartBtn.style.display = 'none';
+  }
+
+  bindOnInputChange(callback) {
+    this.input.addEventListener('input', (e) => {
+      this.resetSuggestionContainer();
+      this.renderSuggestions(callback, e);
+    });
+  }
+
   // will create own api to fit my needs in future
   // for now this debounce is rather useless
   renderSuggestions = debounce((callback, e) => {
@@ -112,13 +139,6 @@ export default class gameView {
       this.createSuggestionCard(suggestion);
     });
   }, 200);
-
-  bindOnInputChange(callback) {
-    this.input.addEventListener('input', (e) => {
-      this.resetSuggestionContainer();
-      this.renderSuggestions(callback, e);
-    });
-  }
 
   // bindSuggestionSelectionEvent
   // callback: sets input value and re-focuses
@@ -145,6 +165,17 @@ export default class gameView {
         // callback is handler for game flow, error handling, win/loss conditions etc
         callback(e.target.value);
         this.resetInput(e);
+      }
+    });
+  }
+
+  bindRestartGame(callback) {
+    this.restartBtn.addEventListener('click', () => {
+      callback();
+    });
+    this.restartBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        callback();
       }
     });
   }

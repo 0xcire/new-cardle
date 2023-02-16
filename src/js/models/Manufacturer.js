@@ -14,4 +14,8 @@ export default class Manufacturers {
     const index = Math.floor(Math.random() * this.list.length);
     return index;
   }
+
+  setAnswer() {
+    this.answer = this.list[this.randomIndex()];
+  }
 }

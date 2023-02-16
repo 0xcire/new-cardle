@@ -9,10 +9,29 @@
   box-shadow: 0px 0px 10px var(--tertiary-color);
 }
 
-.guesses-wrapper h2 {
+.guesses-wrapper div:nth-child(1) {
+  display: flex;
+  align-items: center;
+}
+
+.guesses-wrapper div:nth-child(1) h2 {
   padding: 10px 0 20px 20px;
 
   font-size: 24px;
+}
+
+.guesses-wrapper div:nth-child(1) i {
+  margin: 0 0 8px 10px;
+
+  cursor: pointer;
+  transition: all 1s ease;
+  /* transform: rotate(180deg); */
+
+  display: none;
+}
+
+.guesses-wrapper div:nth-child(1) i:focus {
+  outline: 1px solid var(--secondary-color);
 }
 
 .guess,

@@ -9,6 +9,12 @@ export default class Guess extends Manufacturers {
     this.count = 0;
   }
 
+  reset() {
+    this.count = 0;
+    this.history.length = 0;
+    this.setAnswer();
+  }
+
   getMatchingManufacturers(currentValue) {
     const matches = this.list.filter((manufacturer, i) =>
       this.list[i].manufacturer

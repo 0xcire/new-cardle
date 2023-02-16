@@ -39,14 +39,14 @@ const Controller = () => {
         view.renderLossCard(guess.answer);
         view.renderOutOfGuesses();
         view.disableInput();
-        // view.renderResetBtn();
+        view.renderRestartBtn();
       }
     };
 
     const handleWin = (manufacturer) => {
       view.renderWinCard(manufacturer);
       view.disableInput();
-      // view.renderResetBtn();
+      view.renderRestartBtn();
     };
 
     const handleValidGuess = async () => {
@@ -88,10 +88,16 @@ const Controller = () => {
     view.input.focus();
   };
 
-  // view.bindRestartGame(handleRestartGame)
-  view.bindSuggestionEvent(handleSuggestionEvent);
+  const handleRestartGame = () => {
+    guess.reset();
+    location.reset();
+    view.reset();
+  };
+
   view.bindOnInputChange(handleOnInputChange);
+  view.bindSuggestionEvent(handleSuggestionEvent);
   view.bindGuessInput(handleGuessInput);
+  view.bindRestartGame(handleRestartGame);
 };
 
 document.addEventListener('DOMContentLoaded', async () => {

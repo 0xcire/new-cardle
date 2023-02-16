@@ -11,6 +11,12 @@ export default class Geocode {
     };
   }
 
+  reset() {
+    Object.keys(this.coordinates).forEach((key) => {
+      this.coordinates[key] = {};
+    });
+  }
+
   static convertToRadians(coordinate) {
     return (coordinate * Math.PI) / 180;
   }
