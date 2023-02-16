@@ -10,7 +10,7 @@
     />
     <title>Cardle</title>
 
-    <!-- Google Fonts -- Inter -->
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,57 +25,20 @@
     ></script>
   </head>
   <body>
-    <div id="app" class="cardle container">
-      <div class="header">
+    <div id="app">
+      <header class="header">
         <h1>cardle</h1>
         <input
           id="guess-input"
           type="text"
           placeholder="Guess a manufacturer!"
         />
-        <div class="suggestions">
-          <!-- <div class="suggestion">bmw</div>
-          <div class="suggestion">bmw</div>
-          <div class="suggestion">bmw</div>
-          <div class="suggestion">bmw</div>
-          <div class="suggestion">bmw</div> -->
-        </div>
-      </div>
-      <div class="guesses-wrapper">
-        <h3>Guesses</h3>
+        <div class="suggestions" tabindex="-1"></div>
+      </header>
+      <main class="guesses-wrapper">
+        <h2>Guesses</h2>
         <div class="guesses"></div>
-        <!-- <div class="guess">
-          <p class="name">No more guesses! &#10005;</p>
-        </div>
-        <div class="guess correct">
-          <p class="name">BMW is correct!</p>
-          <div class="indicators">
-            <p class="distance">682mi</p>
-            <p class="arrow direction">&uarr;</p>
-          </div>
-        </div>
-        <div class="guess">
-          <p class="name">BMW</p>
-          <div class="indicators">
-            <p class="distance">682mi</p>
-            <p class="arrow direction">&uarr;</p>
-          </div>
-        </div>
-        <div class="guess">
-          <p class="name">BMW</p>
-          <div class="indicators">
-            <p class="distance">682mi</p>
-            <p class="arrow direction">&rarr;</p>
-          </div>
-        </div>
-        <div class="guess">
-          <p class="name">BMW</p>
-          <div class="indicators">
-            <p class="distance">682mi</p>
-            <p class="arrow direction">&uarr;</p>
-          </div>
-        </div> -->
-      </div>
+      </main>
       <div class="loader">
         <svg
           class="car-svg"

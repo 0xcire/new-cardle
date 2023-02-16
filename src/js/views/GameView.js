@@ -1,10 +1,7 @@
 import { debounce } from '../utils/utils';
-import Loader from './Loader';
 
-export default class guessView {
+export default class gameView {
   constructor() {
-    // super();
-    this.loader = new Loader();
     this.input = document.querySelector('#guess-input');
     this.suggestionContainer = document.querySelector('.suggestions');
     this.guessContainer = document.querySelector('.guesses');
@@ -22,71 +19,74 @@ export default class guessView {
     this.suggestionContainer.innerHTML = '';
   }
 
-  // one func out of these? normal suggestion card | guess does not exist | already guessed
-  // refactor later[]
-  createSuggestionCard(suggestion) {
-    const container = document.createElement('div');
+  static Suggestion(args) {
+    const container = document.createElement('button');
     container.classList.add('suggestion');
-    container.dataset.type = 'suggestion';
-    container.tabIndex = 0;
-    container.textContent = suggestion.manufacturer;
-    this.suggestionContainer.appendChild(container);
+    if (args?.type === 'error') {
+      container.classList.add('suggestion-error');
+    }
+    return container;
   }
 
-  renderInvalidGuessError() {
-    const container = document.createElement('div');
-    container.classList.add('suggestion', 'suggestion-error');
-    container.textContent = 'not a manufacturer';
-    this.suggestionContainer.appendChild(container);
-  }
-
-  renderAlreadyGuessedError() {
-    const container = document.createElement('div');
-    container.classList.add('suggestion', 'suggestion-error');
-    container.textContent = 'already guessed';
-    this.suggestionContainer.appendChild(container);
-  }
-
-  renderOutOfGuesses() {
-    const container = document.createElement('div');
-    container.classList.add('suggestion', 'suggestion-error');
-    container.textContent = `out of guesses`;
-    this.suggestionContainer.appendChild(container);
-  }
-
-  // can combine these three as well potentially
-  renderWinCard(manufacturer) {
-    const container = document.createElement('div');
-    container.classList.add('guess', 'correct');
-
-    const name = document.createElement('p');
-    name.classList.add('name');
-    name.textContent = `${manufacturer} is correct!`;
-    container.appendChild(name);
-    this.guessContainer.insertAdjacentElement('afterbegin', container);
-  }
-
-  renderLossCard(manufacturer) {
-    const container = document.createElement('div');
-    container.classList.add('guess', 'guess-loss');
-
-    const name = document.createElement('p');
-    name.classList.add('name');
-    name.textContent = `${manufacturer} was correct!`;
-    container.appendChild(name);
-    this.guessContainer.insertAdjacentElement('afterbegin', container);
-  }
-
-  renderValidGuessCard(guess, dist, ang) {
+  static GuessCard() {
     const container = document.createElement('div');
     container.classList.add('guess');
 
     const name = document.createElement('p');
     name.classList.add('name');
-    name.textContent = guess;
+
+    container.appendChild(name);
+    return container;
+  }
+
+  createSuggestionCard(suggestion) {
+    const container = this.constructor.Suggestion({ type: 'suggestion' });
+    container.dataset.type = 'suggestion';
+    container.textContent = suggestion.manufacturer;
+    this.suggestionContainer.appendChild(container);
+  }
+
+  renderInvalidGuessSuggestion() {
+    const container = this.constructor.Suggestion({ type: 'error' });
+    container.textContent = 'not a manufacturer';
+    this.suggestionContainer.appendChild(container);
+  }
+
+  renderAlreadyGuessedSuggestion() {
+    const container = this.constructor.Suggestion({ type: 'error' });
+    container.textContent = 'already guessed';
+    this.suggestionContainer.appendChild(container);
+  }
+
+  renderOutOfGuesses() {
+    const container = this.constructor.Suggestion({ type: 'error' });
+    container.textContent = `out of guesses`;
+    this.suggestionContainer.appendChild(container);
+  }
+
+  renderWinCard(manufacturer) {
+    const container = this.constructor.GuessCard();
+    container.classList.add('guess-correct');
+
+    container.firstElementChild.textContent = `${manufacturer} is correct!`;
+    this.guessContainer.insertAdjacentElement('afterbegin', container);
+  }
+
+  renderLossCard(answer) {
+    const container = this.constructor.GuessCard();
+    container.classList.add('guess-loss');
+
+    container.firstElementChild.textContent = `${answer.manufacturer} was correct!`;
+    this.guessContainer.insertAdjacentElement('afterbegin', container);
+  }
+
+  renderValidGuessCard(guess, dist, ang) {
+    const container = this.constructor.GuessCard();
+    container.firstElementChild.textContent = guess;
 
     const indicators = document.createElement('div');
     indicators.classList.add('indicators');
+
     const distance = document.createElement('p');
     distance.classList.add('distance');
     distance.textContent = dist;
@@ -99,44 +99,33 @@ export default class guessView {
     indicators.appendChild(distance);
     indicators.appendChild(angle);
 
-    container.appendChild(name);
     container.appendChild(indicators);
     this.guessContainer.insertAdjacentElement('afterbegin', container);
   }
 
-  renderSuggestions(array, e) {
+  // will create own api to fit my needs in future
+  // for now this debounce is rather useless
+  renderSuggestions = debounce((callback, e) => {
     if (e.target.value === '') return;
-    const suggestions = array;
+    const suggestions = callback(e.target.value);
     suggestions.forEach((suggestion) => {
       this.createSuggestionCard(suggestion);
     });
-  }
-
-  // renderAutoSuggestions
-  // i thought this concept was interesting
-  // understand it is only necessary if suggestions were pulled from a db or api
-  getSuggestions = debounce((callback, e) => {
-    const suggestions = callback(e.target.value);
-    this.renderSuggestions(suggestions, e);
-  }, 250);
+  }, 200);
 
   bindOnInputChange(callback) {
     this.input.addEventListener('input', (e) => {
       this.resetSuggestionContainer();
-      // callback gets matching manufacturers from model
-      this.getSuggestions(callback, e);
+      this.renderSuggestions(callback, e);
     });
   }
 
   // bindSuggestionSelectionEvent
-  bindAutoSuggestionEvent(callback) {
+  // callback: sets input value and re-focuses
+  bindSuggestionEvent(callback) {
     document.addEventListener('click', (e) => {
       if (e.target.dataset.type === 'suggestion') {
         this.resetSuggestionContainer();
-        // sets input value to auto suggestion text content
-        // focuses input so user can hit enter and submit guess
-        // []this is currently following UX of worldle but potentially makes more sense
-        // to automatically submit guess on auto suggestion click
         callback(e.target.textContent);
       }
     });

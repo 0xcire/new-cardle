@@ -1,21 +1,21 @@
 .loader {
-  z-index: 10000;
   position: absolute;
   top: 0;
   left: 0;
+
+  display: grid;
+  place-items: center;
   height: 100%;
   width: 100%;
 
   border-radius: 25px;
-  background: linear-gradient(45deg, var(--tertiary-color), var(--base-color));
-
-  display: grid;
-  place-items: center;
+  background: var(--gradient);
+  z-index: 10000;
 
   display: none;
 }
 
 .car-svg {
-  fill: transparent;
   width: 50%;
+  fill: transparent;
 }

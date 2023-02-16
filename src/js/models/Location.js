@@ -15,19 +15,24 @@ export default class Geocode {
     return (coordinate * Math.PI) / 180;
   }
 
+  getLocation(headquarters) {
+    return fetch(`${this.endpoint}q=${headquarters}&limit=1&appid=${this.key}`);
+  }
+
   async getCoordinates(guessHQ, answerHQ) {
     try {
       const res = await Promise.all([
-        fetch(`${this.endpoint}q=${guessHQ}&limit=1&appid=${this.key}`),
-        fetch(`${this.endpoint}q=${answerHQ}&limit=1&appid=${this.key}`),
+        this.getLocation(guessHQ),
+        this.getLocation(answerHQ),
       ]);
       const data = await Promise.all(res.map((d) => d.json()));
 
       // data[0] = guess
       // data[1] = answer
+      // [] implement better fallback when data[1] === {}
       const coordinates = data.map((location) => ({
-        lat: location[0]?.lat,
-        lon: location[0]?.lon,
+        lat: location[0]?.lat ?? 0,
+        lon: location[0]?.lon ?? 0,
       }));
       [this.coordinates.guess, this.coordinates.answer] = coordinates;
     } catch (error) {
@@ -69,9 +74,10 @@ export default class Geocode {
 
   angleFromGuessToAnswer() {
     const radians = this.degreeToRadians();
-    const dy = radians.answer.lat - radians.guess.lat;
-    const dx = radians.answer.lon - radians.guess.lon;
-    let theta = Math.atan2(dy, dx);
+    const dlat = radians.answer.lat - radians.guess.lat;
+    const dlon = radians.answer.lon - radians.guess.lon;
+
+    let theta = Math.atan2(dlat, dlon);
     theta *= 180 / Math.PI;
     if (theta < 0) theta = 360 + theta;
     return Math.round(theta);

@@ -9,9 +9,11 @@ export default class Guess extends Manufacturers {
     this.count = 0;
   }
 
-  getMatchingManufacturers(value) {
+  getMatchingManufacturers(currentValue) {
     const matches = this.list.filter((manufacturer, i) =>
-      this.list[i].manufacturer.toLowerCase().includes(value.toLowerCase())
+      this.list[i].manufacturer
+        .toLowerCase()
+        .includes(currentValue.toLowerCase())
     );
     return matches;
   }
@@ -24,13 +26,11 @@ export default class Guess extends Manufacturers {
   }
 
   addGuessToHistory(guess) {
-    this.history.unshift(guess);
+    this.history.unshift(normalizeString(guess));
   }
 
   previouslySubmitted(input) {
-    return this.history.some(
-      (guess) => normalizeString(guess) === normalizeString(input)
-    );
+    return this.history.some((guess) => guess === normalizeString(input));
   }
 
   matchesAnswer() {

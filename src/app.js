@@ -1,85 +1,73 @@
 import './app.css';
 
 import Loader from './js/views/Loader';
-import GuessView from './js/views/GuessView';
+import GameView from './js/views/GameView';
 
 import Guess from './js/models/Guess';
-import Geocode from './js/models/Geocode';
+import Location from './js/models/Location';
 
-// this is not right
 const state = {
   loader: new Loader(),
 };
 
 const Controller = () => {
   const guess = new Guess();
-  const geocode = new Geocode();
+  const location = new Location();
 
-  const view = new GuessView();
+  const view = new GameView();
 
-  const handleOnInputChange = (value) => {
-    return guess.getMatchingManufacturers(value);
+  const handleOnInputChange = (currentValue) => {
+    return guess.getMatchingManufacturers(currentValue);
   };
 
   // main game flow
-  // []remove loader for all guesses - only needed for 'validGuess'
   // []apply input animation instead for errors and etc
   const handleGuessInput = async (input) => {
-    // state.loader.render();
-    // removing any spaces and capitalizations
     guess.last = input;
     console.log(guess.answer);
 
-    // opportunity for custom events here? for all these handle{x} cases
-    // [x]
     const handleGuessNotValid = () => {
-      state.loader.hide();
-      view.renderInvalidGuessError();
+      view.renderInvalidGuessSuggestion();
     };
 
-    // [x]
     const handleAlreadyGuessed = () => {
-      state.loader.hide();
-      view.renderAlreadyGuessedError();
+      view.renderAlreadyGuessedSuggestion();
     };
 
-    const handleOutOfGuesses = (manufacturer) => {
-      state.loader.hide();
-      view.renderLossCard(manufacturer);
-      view.renderOutOfGuesses();
-      view.disableInput();
+    const handleLoss = () => {
+      if (guess.getCount() === 5 && !guess.matchesAnswer()) {
+        view.renderLossCard(guess.answer);
+        view.renderOutOfGuesses();
+        view.disableInput();
+        // view.renderResetBtn();
+      }
     };
 
     const handleWin = (manufacturer) => {
-      state.loader.hide();
       view.renderWinCard(manufacturer);
       view.disableInput();
+      // view.renderResetBtn();
     };
 
     const handleValidGuess = async () => {
+      state.loader.render();
+
       const guessObj = guess.inList();
-      console.log(guessObj);
       guess.addGuessToHistory(guessObj.manufacturer);
 
-      await geocode.getCoordinates(guessObj.hq, guess.answer.hq);
-      const distance = geocode.distanceBetweenGuessAnswer();
-      const angle = geocode.angleFromGuessToAnswer();
-      console.log('view.renderGuessCard()');
+      await location.getCoordinates(guessObj.hq, guess.answer.hq);
+      const distance = location.distanceBetweenGuessAnswer();
+      const angle = location.angleFromGuessToAnswer();
 
       guess.increaseCount();
       state.loader.hide();
+
       view.renderValidGuessCard(guessObj.manufacturer, distance, angle);
+
+      setTimeout(() => handleLoss(), 500);
     };
 
-    // this shouldnt be run on 6th guess,
-    // if 5th guess
-    // and 5th guess does not match
-    // run below[]
-    if (guess.getCount(input) >= 5) {
-      handleOutOfGuesses(input);
-      return;
-    }
-    if (guess.inList() === undefined) {
+    if (!guess.inList()) {
       handleGuessNotValid();
       return;
     }
@@ -91,18 +79,17 @@ const Controller = () => {
       handleWin(input);
       return;
     }
-    // default behavior is rendering a guess card that displays
-    // 'how wrong' you were
+
     handleValidGuess();
   };
 
-  const handleAutoSuggestionEvent = (value) => {
-    view.input.value = value;
+  const handleSuggestionEvent = (manufacturer) => {
+    view.input.value = manufacturer;
     view.input.focus();
   };
 
   // view.bindRestartGame(handleRestartGame)
-  view.bindAutoSuggestionEvent(handleAutoSuggestionEvent);
+  view.bindSuggestionEvent(handleSuggestionEvent);
   view.bindOnInputChange(handleOnInputChange);
   view.bindGuessInput(handleGuessInput);
 };
