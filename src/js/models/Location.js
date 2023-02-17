@@ -4,7 +4,7 @@ export default class Geocode {
   constructor() {
     this.locations = [];
     this.key = OPEN_GEOCODE_KEY;
-    this.endpoint = 'http://api.openweathermap.org/geo/1.0/direct?';
+    this.endpoint = 'https://api.openweathermap.org/geo/1.0/direct?';
     this.coordinates = {
       guess: {},
       answer: {},
