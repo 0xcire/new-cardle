@@ -11,6 +11,13 @@ export default class gameView {
     this.unitOptions = document.querySelectorAll('#units option');
   }
 
+  reset() {
+    this.clearGuesses();
+    this.enableInput();
+    this.resetSuggestionContainer();
+    this.restartBtn.style.display = 'none';
+  }
+
   resetInput() {
     this.input.value = '';
   }
@@ -27,13 +34,26 @@ export default class gameView {
     this.suggestionContainer.innerHTML = '';
   }
 
+  inputShake() {
+    this.input.classList.remove('input-shake');
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        this.input.classList.add('input-shake');
+      });
+    });
+  }
+
   static Suggestion(args) {
     const container = document.createElement('button');
     container.classList.add('suggestion');
+
     if (args?.type === 'error') {
       container.classList.add('suggestion-error');
       container.tabIndex = '-1';
+    } else if (args?.type === 'suggestion') {
+      container.dataset.type = 'suggestion';
     }
+
     return container;
   }
 
@@ -50,7 +70,6 @@ export default class gameView {
 
   createSuggestionCard(suggestion) {
     const container = this.constructor.Suggestion({ type: 'suggestion' });
-    container.dataset.type = 'suggestion';
     container.textContent = suggestion.manufacturer;
     this.suggestionContainer.appendChild(container);
   }
@@ -120,20 +139,6 @@ export default class gameView {
     this.guessContainer.innerHTML = '';
   }
 
-  reset() {
-    this.clearGuesses();
-    this.enableInput();
-    this.suggestionContainer.innerHTML = '';
-    this.restartBtn.style.display = 'none';
-  }
-
-  bindOnInputChange(callback) {
-    this.input.addEventListener('input', (e) => {
-      this.resetSuggestionContainer();
-      this.renderSuggestions(callback, e);
-    });
-  }
-
   // will create own api to fit my needs in future
   // for now this debounce is rather useless
   renderSuggestions = debounce((callback, e) => {
@@ -142,11 +147,18 @@ export default class gameView {
     suggestions.forEach((suggestion) => {
       this.createSuggestionCard(suggestion);
     });
-  }, 200);
+  }, 150);
 
   toggleInfoSettingsPanel() {
     this.infoContainer.classList.toggle('info-settings-hidden');
     this.infoContainer.classList.toggle('info-settings-shown');
+  }
+
+  bindOnInputChange(callback) {
+    this.input.addEventListener('input', (e) => {
+      this.resetSuggestionContainer();
+      this.renderSuggestions(callback, e);
+    });
   }
 
   // bindSuggestionSelectionEvent

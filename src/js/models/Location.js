@@ -12,14 +12,14 @@ export default class Geocode {
     this.units = 'mi';
   }
 
+  setUnits(units) {
+    this.units = units;
+  }
+
   reset() {
     Object.keys(this.coordinates).forEach((key) => {
       this.coordinates[key] = {};
     });
-  }
-
-  setUnits(units) {
-    this.units = units;
   }
 
   convertDistance(distance) {
@@ -47,10 +47,9 @@ export default class Geocode {
 
       // data[0] = guess
       // data[1] = answer
-      // [] implement better fallback when data[1] === {}
       const coordinates = data.map((location) => ({
-        lat: location[0]?.lat ?? 0,
-        lon: location[0]?.lon ?? 0,
+        lat: location[0]?.lat,
+        lon: location[0]?.lon,
       }));
       [this.coordinates.guess, this.coordinates.answer] = coordinates;
     } catch (error) {
@@ -83,7 +82,8 @@ export default class Geocode {
         Math.sin(dlon / 2) ** 2;
 
     // c represents angular distance in radians
-    const c = 2 * Math.asin(Math.sqrt(a));
+    // const c = 2 * Math.asin(Math.sqrt(a));
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const r = this.units === 'mi' ? 3956 : 6371;
 
     return `${Math.round(c * r)} ${this.units}`;
