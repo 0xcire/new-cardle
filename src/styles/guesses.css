@@ -24,9 +24,6 @@
   margin: 0 0 8px 10px;
 
   cursor: pointer;
-  transition: all 1s ease;
-  /* transform: rotate(180deg); */
-
   display: none;
 }
 
@@ -48,6 +45,10 @@
   border-radius: 5px;
   background-color: var(--accent-color);
   animation: reveal 0.3s;
+}
+
+.guess-correct {
+  background-color: #468c5a;
 }
 
 @media (prefers-reduced-motion) {
@@ -72,21 +73,12 @@
   }
 }
 
-.reveal-guess {
-  opacity: 1;
-  transform: translate(0, 0);
-}
-
 .indicators {
   width: 35%;
 }
 
-@media screen and (min-width: 600px) {
+@media (min-width: 600px) {
   .indicators {
     width: 25%;
   }
-}
-
-.guess-correct {
-  background-color: #468c5a;
 }

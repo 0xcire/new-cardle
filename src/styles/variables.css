@@ -4,8 +4,9 @@
   --tertiary-color: #330036;
 
   --accent-color: #8b0000;
-  --cold-color: #30c5ff;
   --win-color: #5c946e;
 
   --gradient: linear-gradient(45deg, var(--tertiary-color), var(--base-color));
+
+  --direction-ang: rotate(0deg);
 }

@@ -3,6 +3,7 @@
 ========================================================================== */
 @import './styles/reset.css';
 @import './styles/variables.css';
+@import './styles/fonts.css';
 @import './styles/header.css';
 @import './styles/guesses.css';
 @import './styles/loader.css';
@@ -50,20 +51,20 @@ body {
   box-shadow: 0px 0px 30px var(--tertiary-color);
 }
 
-@media screen and (min-width: 800px) {
+@media (min-width: 800px) {
   #app {
     width: 60%;
   }
 }
 
-@media screen and (min-width: 1100px) {
+@media (min-width: 1100px) {
   #app {
     width: 50%;
     padding: 60px 40px;
   }
 }
 
-@media screen and (min-width: 1600px) {
+@media (min-width: 1600px) {
   #app {
     width: 40%;
   }

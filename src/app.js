@@ -21,17 +21,17 @@ const Controller = () => {
   };
 
   // main game flow
-  // []apply input animation instead for errors and etc
   const handleGuessInput = async (input) => {
     guess.last = input;
-    console.log(guess.answer);
 
     const handleGuessNotValid = () => {
       view.renderInvalidGuessSuggestion();
+      view.inputShake();
     };
 
     const handleAlreadyGuessed = () => {
       view.renderAlreadyGuessedSuggestion();
+      view.inputShake();
     };
 
     const handleLoss = () => {
@@ -64,7 +64,7 @@ const Controller = () => {
 
       view.renderValidGuessCard(guessObj.manufacturer, distance, angle);
 
-      setTimeout(() => handleLoss(), 500);
+      setTimeout(() => handleLoss(), 750);
     };
 
     if (!guess.inList()) {
