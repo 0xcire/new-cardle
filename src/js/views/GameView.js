@@ -5,8 +5,10 @@ export default class gameView {
     this.input = document.querySelector('#guess-input');
     this.suggestionContainer = document.querySelector('.suggestions');
     this.guessContainer = document.querySelector('.guesses');
-    this.guessHeader = document.querySelector('.guesses-wrapper div');
     this.restartBtn = document.querySelector('.fa-rotate');
+    this.infoContainer = document.querySelector('.info-settings');
+    this.instructionsBtn = document.querySelector('.fa-gear');
+    this.unitOptions = document.querySelectorAll('#units option');
   }
 
   resetInput() {
@@ -30,6 +32,7 @@ export default class gameView {
     container.classList.add('suggestion');
     if (args?.type === 'error') {
       container.classList.add('suggestion-error');
+      container.tabIndex = '-1';
     }
     return container;
   }
@@ -120,6 +123,7 @@ export default class gameView {
   reset() {
     this.clearGuesses();
     this.enableInput();
+    this.suggestionContainer.innerHTML = '';
     this.restartBtn.style.display = 'none';
   }
 
@@ -139,6 +143,11 @@ export default class gameView {
       this.createSuggestionCard(suggestion);
     });
   }, 200);
+
+  toggleInfoSettingsPanel() {
+    this.infoContainer.classList.toggle('info-settings-hidden');
+    this.infoContainer.classList.toggle('info-settings-shown');
+  }
 
   // bindSuggestionSelectionEvent
   // callback: sets input value and re-focuses
@@ -177,6 +186,20 @@ export default class gameView {
       if (e.key === 'Enter') {
         callback();
       }
+    });
+  }
+
+  bindToggleInstructions() {
+    this.instructionsBtn.addEventListener('click', () => {
+      this.toggleInfoSettingsPanel();
+    });
+  }
+
+  bindChangeUnits(callback) {
+    this.unitOptions.forEach((option) => {
+      option.addEventListener('click', (e) => {
+        callback(e.target.value);
+      });
     });
   }
 }

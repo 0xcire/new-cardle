@@ -9,12 +9,24 @@ export default class Geocode {
       guess: {},
       answer: {},
     };
+    this.units = 'mi';
   }
 
   reset() {
     Object.keys(this.coordinates).forEach((key) => {
       this.coordinates[key] = {};
     });
+  }
+
+  setUnits(units) {
+    this.units = units;
+  }
+
+  convertDistance(distance) {
+    if (this.units === 'km') {
+      return Math.round(distance * 1.60934);
+    }
+    return Math.round(distance * 0.621371);
   }
 
   static convertToRadians(coordinate) {
@@ -72,10 +84,9 @@ export default class Geocode {
 
     // c represents angular distance in radians
     const c = 2 * Math.asin(Math.sqrt(a));
-    // r = 6371 for km
-    const r = 3956;
+    const r = this.units === 'mi' ? 3956 : 6371;
 
-    return `${Math.round(c * r)} mi`;
+    return `${Math.round(c * r)} ${this.units}`;
   }
 
   angleFromGuessToAnswer() {

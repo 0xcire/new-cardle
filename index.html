@@ -28,6 +28,52 @@
     <div id="app">
       <header class="header">
         <h1>cardle</h1>
+        <div class="info-settings info-settings-hidden">
+          <i class="fa-solid fa-gear"></i>
+          <div class="info">
+            <h4>How to play</h4>
+            <p>Guess the car manufacturer in 5 guesses.</p>
+            <p>Guess must be a valid manufacturer.</p>
+            <p>
+              A valid guess will indicate how far from the answer you are and
+              point you in the right direction. <br /><br />
+              This is determined by manufacturer headquarter locations, so keep
+              that in mind!
+            </p>
+            <p>
+              Currently, feel free to keep repeating as many times as you want.
+              Although this may change in the future.
+            </p>
+
+            <p>
+              This game is inspired by
+              <a
+                class="wordle"
+                href="https://www.nytimes.com/games/wordle/index.html"
+                target="_blank"
+                >wordle</a
+              >
+              and
+              <a
+                class="worldle"
+                href="https://worldle.teuteuf.fr/"
+                target="_blank"
+                >worldle</a
+              >, so feel free to give those games a try as well.
+            </p>
+          </div>
+          <div class="settings">
+            <h4>Settings</h4>
+
+            <form action="post" class="settings">
+              <label for="units">Units</label>
+              <select name="units" id="units">
+                <option value="mi" selected>imperial</option>
+                <option value="km">metric</option>
+              </select>
+            </form>
+          </div>
+        </div>
         <input
           id="guess-input"
           type="text"

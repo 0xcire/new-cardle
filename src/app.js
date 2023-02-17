@@ -94,10 +94,35 @@ const Controller = () => {
     view.reset();
   };
 
+  const handleChangeUnits = (units) => {
+    if (units === location.units) return;
+
+    if (units === 'km') {
+      location.setUnits(units);
+    } else {
+      location.setUnits(units);
+    }
+
+    const currentGuesses = view.guessContainer.children;
+    if (currentGuesses.length > 0) {
+      for (let i = 0; i < currentGuesses.length; i += 1) {
+        const distanceEl = currentGuesses[i].children[1].children[0];
+        const distance = distanceEl.textContent.split(' ')[0];
+        distanceEl.textContent = `${location.convertDistance(
+          distance
+        )} ${units}`;
+      }
+    }
+
+    view.toggleInfoSettingsPanel();
+  };
+
   view.bindOnInputChange(handleOnInputChange);
   view.bindSuggestionEvent(handleSuggestionEvent);
   view.bindGuessInput(handleGuessInput);
   view.bindRestartGame(handleRestartGame);
+  view.bindToggleInstructions();
+  view.bindChangeUnits(handleChangeUnits);
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
