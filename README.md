@@ -6,7 +6,7 @@ Built using Vanilla JS and CSS.
 
 ## use
 
-- can be used here: [project-not-hosted-yet](#)
+- try it [here](https://0xcire.github.io/new_cardle/)
 
 - otherwise feel free to \
    `git clone https://github.com/0xcire/new_cardle.git cardle` \

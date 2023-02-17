@@ -23,6 +23,4 @@ src/env
 *.sln
 *.sw?
 
-remarks.md 
-notes.md 
-draft.README.md
+bugs.md
