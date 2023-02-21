@@ -70,3 +70,21 @@ body {
     width: 40%;
   }
 }
+
+@media (min-width: 1920px) {
+  #app {
+    width: 30%;
+  }
+}
+
+@media (min-width: 2400px) {
+  #app {
+    width: 25%;
+  }
+}
+
+@media (min-width: 3840px) {
+  #app {
+    width: 15%;
+  }
+}

@@ -52,6 +52,13 @@ export default class Guess extends Manufacturers {
     return false;
   }
 
+  checkLoss() {
+    if (this.count === 5 && !this.matchesAnswer()) {
+      return true;
+    }
+    return false;
+  }
+
   increaseCount() {
     this.count += 1;
   }

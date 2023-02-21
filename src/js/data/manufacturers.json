@@ -2,22 +2,22 @@
   {
     "id": 1,
     "manufacturer": "Acura",
-    "hq": "Tokyo, Japan"
+    "hq": "Tokyo, JP"
   },
   {
     "id": 2,
     "manufacturer": "Alfa Romeo",
-    "hq": "Turin, Italy"
+    "hq": "Turin, IT"
   },
   {
     "id": 3,
     "manufacturer": "Audi",
-    "hq": "Ingolstadt, Germany"
+    "hq": "Ingolstadt, DE"
   },
   {
     "id": 4,
     "manufacturer": "BMW",
-    "hq": "Munich, Germany"
+    "hq": "Munich, DE"
   },
   {
     "id": 5,
@@ -62,22 +62,22 @@
   {
     "id": 13,
     "manufacturer": "Honda",
-    "hq": "Tokyo, Japan"
+    "hq": "Tokyo, JP"
   },
   {
     "id": 14,
     "manufacturer": "Hyundai",
-    "hq": "Seoul, South Korea"
+    "hq": "Seoul, KR"
   },
   {
     "id": 15,
     "manufacturer": "Infiniti",
-    "hq": "Yokohama, Kanagawa, Japan"
+    "hq": "Yokohama, JP"
   },
   {
     "id": 16,
     "manufacturer": "Jaguar",
-    "hq": "Coventry, United Kingdom"
+    "hq": "Coventry, England"
   },
   {
     "id": 17,
@@ -87,17 +87,17 @@
   {
     "id": 18,
     "manufacturer": "Kia",
-    "hq": "Seoul, South Korea"
+    "hq": "Seoul, KR"
   },
   {
     "id": 19,
     "manufacturer": "Land Rover",
-    "hq": "Coventry, United Kingdom"
+    "hq": "Coventry, England"
   },
   {
     "id": 20,
     "manufacturer": "Lexus",
-    "hq": "Nagoya, Japan"
+    "hq": "Nagoya, JP"
   },
   {
     "id": 21,
@@ -107,17 +107,17 @@
   {
     "id": 22,
     "manufacturer": "Maserati",
-    "hq": "Modena, Italy"
+    "hq": "Modena, IT"
   },
   {
     "id": 23,
     "manufacturer": "Mazda",
-    "hq": "Fuchu, Hiroshima, Japan"
+    "hq": "Fuchu, JP"
   },
   {
     "id": 24,
     "manufacturer": "Mercedes Benz",
-    "hq": "Stuttgart, Germany"
+    "hq": "Stuttgart, DE"
   },
   {
     "id": 25,
@@ -127,12 +127,12 @@
   {
     "id": 26,
     "manufacturer": "Mitsubishi",
-    "hq": "Tokyo, Japan"
+    "hq": "Tokyo, JP"
   },
   {
     "id": 27,
     "manufacturer": "Nissan",
-    "hq": "Yokohama, Kanagawa, Japan"
+    "hq": "Yokohama, JP"
   },
   {
     "id": 28,
@@ -142,7 +142,7 @@
   {
     "id": 29,
     "manufacturer": "Porsche",
-    "hq": "Stuttgart, Germany"
+    "hq": "Stuttgart, DE"
   },
   {
     "id": 30,
@@ -152,7 +152,7 @@
   {
     "id": 31,
     "manufacturer": "Subaru",
-    "hq": "Tokyo, Japan"
+    "hq": "Tokyo, JP"
   },
   {
     "id": 32,
@@ -162,16 +162,16 @@
   {
     "id": 33,
     "manufacturer": "Toyota",
-    "hq": "Toyota, Aichi, Japan"
+    "hq": "Toyota, JP"
   },
   {
     "id": 34,
     "manufacturer": "Volkwagen",
-    "hq": "Wolfsburg, Germany"
+    "hq": "Wolfsburg, DE"
   },
   {
     "id": 35,
     "manufacturer": "Volvo",
-    "hq": "Gothenburg, Sweden"
+    "hq": "Gothenburg, SE"
   }
 ]

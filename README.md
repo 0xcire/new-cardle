@@ -14,6 +14,10 @@ Built using Vanilla JS and CSS.
    `npm install` \
    `npm run dev`
 
+### issues
+
+- Following a more accurate formula is producing errors on my end when calculating bearing angle from guess to answer.
+
 ### remarks
 
 - searched and could not find an api that would be useful here,
@@ -28,5 +32,6 @@ Built using Vanilla JS and CSS.
 - create custom api as currently none exist to serve my needs here
 - add backend (firebase?) to keep track of user data like score, win streak, etc
 - use opencage instead of using openweather's deprecated geocoding api
-  - openweather geocoding is just finnickey
+  - will be moving to opencage as soon as i rebuild in react
+  - will allow for consistency in api and response data
 - map to visualize guesses although this might make it too easy

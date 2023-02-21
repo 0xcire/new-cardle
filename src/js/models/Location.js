@@ -13,6 +13,7 @@ export default class Geocode {
   }
 
   setUnits(units) {
+    if (this.units === units) return;
     this.units = units;
   }
 
@@ -24,17 +25,21 @@ export default class Geocode {
 
   convertDistance(distance) {
     if (this.units === 'km') {
-      return Math.round(distance * 1.60934);
+      return `${Math.round(distance * 1.60934)} km`;
     }
-    return Math.round(distance * 0.621371);
+    return `${Math.round(distance * 0.621371)} mi`;
   }
 
-  static convertToRadians(coordinate) {
-    return (coordinate * Math.PI) / 180;
+  static convertToRadians(degree) {
+    return degree * (Math.PI / 180);
+  }
+
+  static convertToDegrees(radians) {
+    return radians * (180 / Math.PI);
   }
 
   getLocation(headquarters) {
-    return fetch(`${this.endpoint}q=${headquarters}&limit=1&appid=${this.key}`);
+    return fetch(`${this.endpoint}q=${headquarters}&limit=5&appid=${this.key}`);
   }
 
   async getCoordinates(guessHQ, answerHQ) {
@@ -45,12 +50,37 @@ export default class Geocode {
       ]);
       const data = await Promise.all(res.map((d) => d.json()));
 
-      // data[0] = guess
-      // data[1] = answer
-      const coordinates = data.map((location) => ({
-        lat: location[0]?.lat,
-        lon: location[0]?.lon,
+      const match = data.map((set) => {
+        const guess = [
+          guessHQ.split(',')[0].replace(/\W/g, ' '),
+          guessHQ.split(',')[1].trim(),
+        ];
+        const answer = [
+          answerHQ.split(',')[0].replace(/\W/g, ' '),
+          answerHQ.split(',')[1].trim(),
+        ];
+        return set.find((location) => {
+          if (location.name === guess[0] && location?.state === guess[1]) {
+            return location;
+          }
+          if (location.name === guess[0] && location?.country === guess[1]) {
+            return location;
+          }
+          if (location.name === answer[0] && location?.state === answer[1]) {
+            return location;
+          }
+          if (location.name === answer[0] && location?.country === answer[1]) {
+            return location;
+          }
+          return false;
+        });
+      });
+
+      const coordinates = match.map((location) => ({
+        lat: location?.lat,
+        lon: location?.lon,
       }));
+
       [this.coordinates.guess, this.coordinates.answer] = coordinates;
     } catch (error) {
       throw new Error(error);
@@ -63,7 +93,6 @@ export default class Geocode {
       rads[key].lat = this.constructor.convertToRadians(rads[key].lat);
       rads[key].lon = this.constructor.convertToRadians(rads[key].lon);
     });
-
     return rads;
   }
 
@@ -82,7 +111,6 @@ export default class Geocode {
         Math.sin(dlon / 2) ** 2;
 
     // c represents angular distance in radians
-    // const c = 2 * Math.asin(Math.sqrt(a));
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const r = this.units === 'mi' ? 3956 : 6371;
 
@@ -95,8 +123,8 @@ export default class Geocode {
     const dlon = radians.answer.lon - radians.guess.lon;
 
     let theta = Math.atan2(dlat, dlon);
-    theta *= 180 / Math.PI;
-    if (theta < 0) theta = 360 + theta;
-    return Math.round(theta);
+    theta = this.constructor.convertToDegrees(theta);
+    theta = (theta + 360) % 360;
+    return theta;
   }
 }

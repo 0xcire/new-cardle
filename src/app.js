@@ -13,7 +13,6 @@ const state = {
 const Controller = () => {
   const guess = new Guess();
   const location = new Location();
-
   const view = new GameView();
 
   const handleOnInputChange = (currentValue) => {
@@ -23,31 +22,6 @@ const Controller = () => {
   // main game flow
   const handleGuessInput = async (input) => {
     guess.last = input;
-
-    const handleGuessNotValid = () => {
-      view.renderInvalidGuessSuggestion();
-      view.inputShake();
-    };
-
-    const handleAlreadyGuessed = () => {
-      view.renderAlreadyGuessedSuggestion();
-      view.inputShake();
-    };
-
-    const handleLoss = () => {
-      if (guess.getCount() === 5 && !guess.matchesAnswer()) {
-        view.renderLossCard(guess.answer);
-        view.renderOutOfGuesses();
-        view.disableInput();
-        view.renderRestartBtn();
-      }
-    };
-
-    const handleWin = (manufacturer) => {
-      view.renderWinCard(manufacturer);
-      view.disableInput();
-      view.renderRestartBtn();
-    };
 
     const handleValidGuess = async () => {
       state.loader.render();
@@ -60,23 +34,25 @@ const Controller = () => {
       const angle = location.angleFromGuessToAnswer();
 
       guess.increaseCount();
-      state.loader.hide();
 
+      state.loader.hide();
       view.renderValidGuessCard(guessObj.manufacturer, distance, angle);
 
-      setTimeout(() => handleLoss(), 750);
+      if (guess.checkLoss()) {
+        setTimeout(() => view.displayLoss(guess.answer), 750);
+      }
     };
 
     if (!guess.inList()) {
-      handleGuessNotValid();
+      view.displayInvalid();
       return;
     }
     if (guess.previouslySubmitted(input)) {
-      handleAlreadyGuessed();
+      view.displayAlreadyGuessed();
       return;
     }
     if (guess.matchesAnswer(input)) {
-      handleWin(input);
+      view.displayWin(input);
       return;
     }
 
@@ -95,32 +71,16 @@ const Controller = () => {
   };
 
   const handleChangeUnits = (units) => {
-    if (units === location.units) return;
-
-    if (units === 'km') {
-      location.setUnits(units);
-    } else {
-      location.setUnits(units);
-    }
-
-    const currentGuesses = view.guessContainer.children;
-    if (currentGuesses.length > 0) {
-      for (let i = 0; i < currentGuesses.length; i += 1) {
-        const distanceEl = currentGuesses[i].children[1].children[0];
-        const distance = distanceEl.textContent.split(' ')[0];
-        distanceEl.textContent = `${location.convertDistance(
-          distance
-        )} ${units}`;
-      }
-    }
-
-    view.toggleInfoSettingsPanel();
+    location.setUnits(units);
+    view.updateExistingDistances(location.convertDistance.bind(location));
   };
 
   view.bindOnInputChange(handleOnInputChange);
   view.bindSuggestionEvent(handleSuggestionEvent);
+
   view.bindGuessInput(handleGuessInput);
   view.bindRestartGame(handleRestartGame);
+
   view.bindToggleInstructions();
   view.bindChangeUnits(handleChangeUnits);
 };

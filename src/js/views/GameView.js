@@ -8,6 +8,7 @@ export default class gameView {
     this.restartBtn = document.querySelector('.fa-rotate');
     this.infoContainer = document.querySelector('.info-settings');
     this.instructionsBtn = document.querySelector('.fa-gear');
+    this.unitSelect = document.querySelector('#units');
     this.unitOptions = document.querySelectorAll('#units option');
   }
 
@@ -32,6 +33,14 @@ export default class gameView {
 
   resetSuggestionContainer() {
     this.suggestionContainer.innerHTML = '';
+  }
+
+  clearGuesses() {
+    this.guessContainer.innerHTML = '';
+  }
+
+  renderRestartBtn() {
+    this.restartBtn.style.display = 'block';
   }
 
   inputShake() {
@@ -86,7 +95,7 @@ export default class gameView {
     this.suggestionContainer.appendChild(container);
   }
 
-  renderOutOfGuesses() {
+  renderLossSuggestion() {
     const container = this.constructor.Suggestion({ type: 'error' });
     container.textContent = `out of guesses`;
     this.suggestionContainer.appendChild(container);
@@ -131,14 +140,6 @@ export default class gameView {
     this.guessContainer.insertAdjacentElement('afterbegin', container);
   }
 
-  renderRestartBtn() {
-    this.restartBtn.style.display = 'block';
-  }
-
-  clearGuesses() {
-    this.guessContainer.innerHTML = '';
-  }
-
   // will create own api to fit my needs in future
   // for now this debounce is rather useless
   renderSuggestions = debounce((callback, e) => {
@@ -152,6 +153,41 @@ export default class gameView {
   toggleInfoSettingsPanel() {
     this.infoContainer.classList.toggle('info-settings-hidden');
     this.infoContainer.classList.toggle('info-settings-shown');
+  }
+
+  // typescript would throw errors here
+  updateExistingDistances(callback) {
+    const currentGuesses = this.guessContainer.children;
+    if (currentGuesses.length > 0) {
+      for (let i = 0; i < currentGuesses.length; i += 1) {
+        const distanceEl = currentGuesses[i].children[1].children[0];
+        const distance = distanceEl.textContent.split(' ')[0];
+        distanceEl.textContent = callback(distance);
+      }
+    }
+  }
+
+  displayInvalid() {
+    this.renderInvalidGuessSuggestion();
+    this.inputShake();
+  }
+
+  displayAlreadyGuessed() {
+    this.renderAlreadyGuessedSuggestion();
+    this.inputShake();
+  }
+
+  displayLoss(answer) {
+    this.renderLossCard(answer);
+    this.renderLossSuggestion();
+    this.disableInput();
+    this.renderRestartBtn();
+  }
+
+  displayWin(input) {
+    this.renderWinCard(input);
+    this.disableInput();
+    this.renderRestartBtn();
   }
 
   bindOnInputChange(callback) {
@@ -208,10 +244,8 @@ export default class gameView {
   }
 
   bindChangeUnits(callback) {
-    this.unitOptions.forEach((option) => {
-      option.addEventListener('click', (e) => {
-        callback(e.target.value);
-      });
+    this.unitSelect.addEventListener('change', (e) => {
+      callback(e.target.value);
     });
   }
 }

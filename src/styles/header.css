@@ -61,7 +61,7 @@
   border-radius: 5px;
   font-size: 14px;
   background: var(--gradient);
-  z-index: 100;
+  z-index: 10000;
   transition: all 0.35s linear;
 }
 
@@ -145,13 +145,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-height: 75vh;
+  max-height: 65vh;
   width: 100%;
   margin-top: 5px;
 
   border-radius: 5px;
   background-color: #330036f2;
-  z-index: 10000;
+  z-index: 500;
   overflow-y: scroll;
   overflow-x: hidden;
 }
