@@ -12,7 +12,7 @@ A [wordle](https://www.nytimes.com/games/wordle/index.html) and [worldle](https:
 
 - Working with Web Animation API
 - Modern JS features that are commonly used in React.
- - Referencing [this](https://kentcdodds.com/blog/javascript-to-know-for-react) article from Kent C Dodds.
+   - Referencing [this](https://kentcdodds.com/blog/javascript-to-know-for-react) article from Kent C Dodds.
 - Promise.all([]) for making multiple API requests that are non-dependent on each other
 
 ### issues
