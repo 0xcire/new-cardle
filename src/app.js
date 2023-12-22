@@ -60,8 +60,9 @@ const Controller = () => {
   };
 
   const handleSuggestionEvent = (manufacturer) => {
-    view.input.value = manufacturer;
+    view.input.value = '';
     view.input.focus();
+    handleGuessInput(manufacturer);
   };
 
   const handleRestartGame = () => {
